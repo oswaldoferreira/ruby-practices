@@ -1,0 +1,5 @@
+require 'rspec'
+require 'student'
+require 'exam'
+require 'issue'
+require 'exam_application'
