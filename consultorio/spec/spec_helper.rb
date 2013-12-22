@@ -1,0 +1,6 @@
+require 'rspec'
+require 'especialidade'
+require 'receita'
+require 'medico'
+require 'paciente'
+require 'consulta'
