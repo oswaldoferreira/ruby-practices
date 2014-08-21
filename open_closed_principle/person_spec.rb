@@ -8,27 +8,19 @@ describe Person do
     expect(person.stamina).to eq 10
   end
 
-  describe '#walk' do
-    let!(:person) { Person.new(stamina: 10) }
+  describe '#walk action' do
+    let(:walk_action) { double('walk') }
+    let!(:person) { Person.new(stamina: 10,
+      actions: { walk: walk_action }) }
 
-    it 'when success' do
-      expect(person.walk(3)).to eq true
+    it 'has walk action' do
+      expect(person.actions[:walk]).to eq walk_action
     end
 
-    it 'when fails' do
-      expect(person.walk(11)).to eq false
-    end
-  end
+    it 'do walk action' do
+      expect(walk_action).to receive :induce
 
-  describe '#run' do
-    let!(:person) { Person.new(stamina: 10) }
-
-    it 'when success' do
-      expect(person.run(3)).to eq true
-    end
-
-    it 'when fails' do
-      expect(person.run(11)).to eq false
+      person.do :walk, 5
     end
   end
 end

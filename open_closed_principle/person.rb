@@ -1,25 +1,12 @@
 class Person
-  attr_reader :stamina
+  attr_reader :stamina, :actions
 
   def initialize(attributes)
-    @stamina = attributes.fetch(:stamina)
+    @stamina = attributes.fetch(:stamina, 8)
+    @actions = attributes.fetch(:actions, {})
   end
 
-  def walk(loss)
-    if @stamina >= loss
-      @stamina -= loss
-      true
-    else
-      false
-    end
-  end
-
-  def run(loss)
-    if @stamina >= loss
-      @stamina -= loss
-      true
-    else
-      false
-    end
+  def do(action_name, loss)
+    @actions[action_name].induce(loss)
   end
 end
